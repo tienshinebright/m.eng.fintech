@@ -8,19 +8,19 @@ contract("CreateYourToken", (accounts) => {
     tokenInstance = await CreateYourToken.deployed();
   });
 
-  // it("initializes the contract with correct values", async () => {
-  //   const name = await tokenInstance.name();
-  //   assert.equal(name, "TienYongToken", "has the correct name");
+  it("initializes the contract with correct values", async () => {
+    const name = await tokenInstance.name();
+    assert.equal(name, "TienYongToken", "has the correct name");
   
-  //   const symbol = await tokenInstance.symbol();
-  //   assert.equal(symbol, "TYT", "has the correct symbol");
+    const symbol = await tokenInstance.symbol();
+    assert.equal(symbol, "TYT", "has the correct symbol");
   
-  //   const totalSupply = await tokenInstance.totalSupply();
-  //   assert.equal(totalSupply, 10000, "has the correct total supply");
+    const totalSupply = await tokenInstance.totalSupply();
+    assert.equal(totalSupply, 10000, "has the correct total supply");
   
-  //   const balance = await tokenInstance.balances(adminAddress);
-  //   assert.equal(balance.toNumber(), 10000, "allocates the initial supply to the admin account");
-  // });
+    const balance = await tokenInstance.balances(adminAddress);
+    assert.equal(balance.toNumber(), 10000, "allocates the initial supply to the admin account");
+  });
 
   it("transfers token ownership", async () => {
     const sender = accounts[0];
