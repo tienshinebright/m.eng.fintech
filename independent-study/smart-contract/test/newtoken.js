@@ -1,19 +1,19 @@
-const CreateYourToken = artifacts.require("CreateYourToken");
+const NewToken = artifacts.require("NewToken");
 
-contract("CreateYourToken", (accounts) => {
+contract("NewToken", (accounts) => {
   let tokenInstance;
   const adminAddress = "0x569B22EbEA8c97a13350BDB3EDDb2105D93A8beC";
 
   before(async () => {
-    tokenInstance = await CreateYourToken.deployed();
+    tokenInstance = await NewToken.deployed();
   });
 
   it("initializes the contract with correct values", async () => {
     const name = await tokenInstance.name();
-    assert.equal(name, "TienYongToken", "has the correct name");
+    assert.equal(name, "NewToken", "has the correct name");
   
     const symbol = await tokenInstance.symbol();
-    assert.equal(symbol, "TYT", "has the correct symbol");
+    assert.equal(symbol, "NTT", "has the correct symbol");
   
     const totalSupply = await tokenInstance.totalSupply();
     assert.equal(totalSupply, 10000, "has the correct total supply");

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.7.0 <0.9.0;
 
-contract CreateYourToken {
+contract NewToken {
     string public name;
     string public symbol;
     uint256 public totalSupply;
@@ -10,8 +10,7 @@ contract CreateYourToken {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    constructor(string memory _name, string memory _symbol, uint256 _initialSupply) public {
-
+    constructor(string memory _name, string memory _symbol, uint256 _initialSupply) {
         name = _name;
         symbol = _symbol;
         totalSupply = _initialSupply;
