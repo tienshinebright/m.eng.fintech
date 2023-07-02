@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract EscrowLoanContract {
+contract Escrow {
     address payable public borrower;
     address payable[] public lenders;
     uint public loanAmount;
@@ -35,10 +35,8 @@ contract EscrowLoanContract {
         loanPeriod = _loanPeriod;
         interestRate = _interestRate;
         contractStatus = 1; // Wait status
-
-        calculateInstallmentDetails();
-
         thbToken = IERC20(_thbTokenAddress);
+        calculateInstallmentDetails();
     }
 
     function calculateInstallmentDetails() private {
@@ -55,7 +53,6 @@ contract EscrowLoanContract {
     function requestLoan() external {
         require(msg.sender == borrower, "Only the borrower can request the loan");
         require(contractStatus == 1, "Contract is not in the wait status");
-
         thbToken.transferFrom(borrower, address(this), loanAmount);
         contractStatus = 2; // Acceptance status
     }
@@ -63,7 +60,6 @@ contract EscrowLoanContract {
     function transferLoanToBorrower() external {
         require(msg.sender == borrower, "Only the borrower can transfer the loan");
         require(contractStatus == 2, "Contract is not in the acceptance status");
-
         thbToken.transfer(borrower, loanAmount);
         contractStatus = 3; // Returning status
     }
@@ -72,7 +68,6 @@ contract EscrowLoanContract {
         require(msg.sender == borrower, "Only the borrower can make payments");
         require(contractStatus == 3, "Contract is not in the returning status");
         require(currentInstallment < loanPeriod, "All installments have been paid");
-
         thbToken.transferFrom(borrower, address(this), installmentAmount);
         remainingPrincipal -= installmentAmount - calculateInterestAmount();
         currentInstallment++;
@@ -84,7 +79,6 @@ contract EscrowLoanContract {
 
     function withdraw() external {
         require(contractStatus == 4, "Contract is not in the ending status");
-
         uint totalAmount = loanAmount + totalInterest;
         uint amountPerLender = totalAmount / lenders.length;
 
@@ -95,7 +89,6 @@ contract EscrowLoanContract {
 
     function claimFunds() external {
         require(lenderBalances[msg.sender] > 0, "No funds available for withdrawal");
-
         uint amount = lenderBalances[msg.sender];
         lenderBalances[msg.sender] = 0;
         thbToken.transfer(msg.sender, amount);
