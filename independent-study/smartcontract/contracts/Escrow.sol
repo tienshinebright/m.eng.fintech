@@ -7,12 +7,14 @@ contract Escrow {
     address payable public borrower;
     address payable[] public lenders;
     uint public loanAmount;
-    uint public loanPeriod;
+    uint public loanTermMonths;
     uint public interestRate;
+
     uint public installmentAmount;
     uint public totalInterest;
     uint public currentInstallment;
     uint public remainingPrincipal;
+    
     uint public contractStatus;
     IERC20 public thbToken;
     mapping(address => uint) public lenderBalances;
@@ -21,7 +23,7 @@ contract Escrow {
         address payable _borrower,
         address payable[] memory _lenders,
         uint _loanAmount,
-        uint _loanPeriod,
+        uint _loanTermMonths,
         uint _interestRate,
         address _thbTokenAddress
     ) {
@@ -31,7 +33,7 @@ contract Escrow {
         borrower = _borrower;
         lenders = _lenders;
         loanAmount = _loanAmount;
-        loanPeriod = _loanPeriod;
+        loanTermMonths = _loanTermMonths;
         interestRate = _interestRate;
         contractStatus = 1;
         thbToken = IERC20(_thbTokenAddress);
@@ -40,13 +42,13 @@ contract Escrow {
 
     function calculateInstallmentDetails() private {
         uint totalAmount = loanAmount + calculateInterestAmount();
-        installmentAmount = totalAmount / loanPeriod;
+        installmentAmount = totalAmount / loanTermMonths;
         totalInterest = totalAmount - loanAmount;
         remainingPrincipal = loanAmount;
     }
 
     function calculateInterestAmount() private view returns(uint) {
-        return (loanAmount * interestRate * loanPeriod) / 10000;
+        return (loanAmount * interestRate * loanTermMonths) / 10000;
     }
 
     function requestLoan() external {
@@ -66,12 +68,12 @@ contract Escrow {
     function makePayment() external {
         require(msg.sender == borrower, "Only the borrower can make payments");
         require(contractStatus == 3, "Contract is not in the returning status");
-        require(currentInstallment < loanPeriod, "All installments have been paid");
+        require(currentInstallment < loanTermMonths, "All installments have been paid");
         thbToken.transferFrom(borrower, address(this), installmentAmount);
         remainingPrincipal -= installmentAmount - calculateInterestAmount();
         currentInstallment++;
 
-        if (currentInstallment == loanPeriod) {
+        if (currentInstallment == loanTermMonths) {
             contractStatus = 4; // Ending status
         }
     }
