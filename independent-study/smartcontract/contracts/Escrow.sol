@@ -15,7 +15,6 @@ contract Escrow {
     uint public remainingPrincipal;
     uint public contractStatus;
     IERC20 public thbToken;
-
     mapping(address => uint) public lenderBalances;
 
     constructor(
@@ -34,7 +33,7 @@ contract Escrow {
         loanAmount = _loanAmount;
         loanPeriod = _loanPeriod;
         interestRate = _interestRate;
-        contractStatus = 1; // Wait status
+        contractStatus = 1;
         thbToken = IERC20(_thbTokenAddress);
         calculateInstallmentDetails();
     }
@@ -98,3 +97,4 @@ contract Escrow {
         return contractStatus;
     }
 }
+

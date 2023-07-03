@@ -12,7 +12,7 @@ contract MyContract {
         myWords = _words;
     }
 
-        // Use for-loop to iterate over elements
+    // Use for-loop to iterate over elements
     function iterate(uint256 iterations) public pure returns(uint256) {
         uint256 totalIterations = 0;
     
