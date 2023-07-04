@@ -3,21 +3,30 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract Escrow {
+contract Deploy {
     address payable public borrower;
     address payable[] public lenders;
-    uint public loanAmount;
-    uint public loanTermMonths;
-    uint public interestRate;
 
-    uint public installmentAmount;
-    uint public totalInterest;
-    uint public currentInstallment;
-    uint public remainingPrincipal;
-    
+    uint public loanAmount;
+    uint public interestRate;
+    uint public loanTermMonths;
+
+    uint public totalInterestAmount;
+    uint public totalPaymentAmount;
+
     uint public contractStatus;
-    IERC20 public thbToken;
     mapping(address => uint) public lenderBalances;
+    IERC20 public thbToken;
+
+    struct Payment {
+        uint256 paymentNumber;
+        uint256 installmentAmount;
+        uint256 principalAmount;
+        uint256 interestAmount;
+        uint256 remainingPrincipal;
+    }
+
+    Payment public payment;
 
     constructor(
         address payable _borrower,
@@ -35,16 +44,17 @@ contract Escrow {
         loanAmount = _loanAmount;
         loanTermMonths = _loanTermMonths;
         interestRate = _interestRate;
-        contractStatus = 1;
+        contractStatus = 1; // Wait status
         thbToken = IERC20(_thbTokenAddress);
         calculateLoanAmortization();
     }
 
     function calculateLoanAmortization() private {
         uint totalAmount = loanAmount + calculateMonthlyPayment();
-        installmentAmount = totalAmount / loanTermMonths;
-        totalInterest = totalAmount - loanAmount;
-        remainingPrincipal = loanAmount;
+        payment.installmentAmount = totalAmount / loanTermMonths;
+        totalInterestAmount = totalAmount - loanAmount;
+        payment.installmentAmount = totalAmount / loanTermMonths;
+        payment.remainingPrincipal = loanAmount;
     }
 
     function calculateMonthlyPayment() private view returns(uint) {
@@ -68,20 +78,20 @@ contract Escrow {
     function makePayment() external {
         require(msg.sender == borrower, "Only the borrower can make payments");
         require(contractStatus == 3, "Contract is not in the returning status");
-        require(currentInstallment < loanTermMonths, "All installments have been paid");
-        thbToken.transferFrom(borrower, address(this), installmentAmount);
-        remainingPrincipal -= installmentAmount - calculateInterestAmount();
-        currentInstallment++;
+        require(payment.installmentAmount < loanTermMonths, "All installments have been paid");
+        thbToken.transferFrom(borrower, address(this), payment.installmentAmount);
+        payment.remainingPrincipal -= payment.installmentAmount - payment.interestAmount;
+        payment.installmentAmount++;
 
-        if (currentInstallment == loanTermMonths) {
+        if (payment.installmentAmount == loanTermMonths) {
             contractStatus = 4; // Ending status
         }
     }
 
     function withdraw() external {
         require(contractStatus == 4, "Contract is not in the ending status");
-        uint totalAmount = loanAmount + totalInterest;
-        uint amountPerLender = totalAmount / lenders.length;
+        totalPaymentAmount = loanAmount + totalInterestAmount;
+        uint amountPerLender = totalPaymentAmount / lenders.length;
 
         for (uint i = 0; i < lenders.length; i++) {
             lenderBalances[lenders[i]] = amountPerLender;
@@ -98,5 +108,16 @@ contract Escrow {
     function getContractStatus() external view returns(uint) {
         return contractStatus;
     }
-}
 
+    function calculateTotal() external returns (uint256, uint256) {
+        totalInterestAmount = 0;
+        totalPaymentAmount = 0;
+
+        for (uint256 i = 0; i < loanTermMonths; i++) {
+            totalInterestAmount += payment.interestAmount;
+            totalPaymentAmount += payment.installmentAmount;
+        }
+
+        return (totalInterestAmount, totalPaymentAmount);
+    }
+}

@@ -129,10 +129,7 @@ contract EscrowLoanAmortization {
         uint256 _loanAmount,
         uint256 _monthlyInterestRate,
         uint256 _loanTermMonths
-    ) 
-        internal 
-        pure 
-        returns (uint256) 
+        ) internal pure returns (uint256) 
     {
         // Calculate monthly payment using the loan amortization formula
         uint256 denominator = (1 + _monthlyInterestRate)**_loanTermMonths;
