@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import Home from './Home';
 import Borrower from './Borrower';
 import Lender from './Lender';
 import LendingPools from './LendingPools';
 import Analytics from './Analytics';
 import CustomerSupport from './CustomerSupport';
+import Loan from './Loan';
 
 import logo from '../assets/p2p.png';
 
@@ -46,6 +47,7 @@ const Navbar = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/borrower" element={<Borrower />} />
+        <Route path="/borrower/loan" element={<Loan />} />
         <Route path="/lender" element={<Lender />} />
         <Route path="/lending-pools" element={<LendingPools />} />
         <Route path="/analytics" element={<Analytics />} />

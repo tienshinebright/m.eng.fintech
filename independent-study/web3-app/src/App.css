@@ -1,9 +1,18 @@
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
 
 nav {
   background-color: #4361ee;
@@ -25,14 +34,6 @@ nav ul li {
 nav ul li a {
   color: #ffffff;
   text-decoration: none;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 .navbar {
@@ -113,3 +114,4 @@ nav ul li a {
 .navbar-button:hover {
   background-color: #f2f2f2;
 }
+
