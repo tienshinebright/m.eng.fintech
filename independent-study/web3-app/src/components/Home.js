@@ -1,10 +1,9 @@
 import React from 'react';
+import background from '../assets/background.png';
 
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to Peer to Peer Lending</h1>
-      <p>This is the home page content.</p>
     </div>
   );
 };

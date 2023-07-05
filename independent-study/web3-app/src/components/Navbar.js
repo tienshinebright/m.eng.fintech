@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Routes, Route, NavLink } from 'react-router-dom';
 import Home from './Home';
 import Borrower from './Borrower';
 import Lender from './Lender';
@@ -20,25 +20,25 @@ const Navbar = () => {
           </div>
           <ul className="navbar-menu">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink exact to="/" activeClassName="active">HOME</NavLink>
             </li>
             <li>
-              <Link to="/borrower">Borrower</Link>
+              <NavLink to="/borrower" activeClassName="active">BORROWER</NavLink>
             </li>
             <li>
-              <Link to="/lender">Lender</Link>
+              <NavLink to="/lender" activeClassName="active">LENDER</NavLink>
             </li>
             <li>
-              <Link to="/lending-pools">Lending Pools</Link>
+              <NavLink to="/lending-pools" activeClassName="active">LENDING POOLS</NavLink>
             </li>
             <li>
-              <Link to="/analytics">Analytics</Link>
+              <NavLink to="/analytics" activeClassName="active">ANALYTICS</NavLink>
             </li>
             <li>
-              <Link to="/customer-support">Customer Support</Link>
+              <NavLink to="/customer-support" activeClassName="active">CUSTOMER SUPPORT</NavLink>
             </li>
             <li className="navbar-button-container">
-              <button className="navbar-button">Log Out</button>
+              <button className="navbar-button">LOG OUT</button>
             </li>
           </ul>
         </div>
