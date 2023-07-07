@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card {
+  width: 300px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-right: 20px;
+}
+
+.sub-card {
+  margin-bottom: 20px;
+}
+
+.sub-card p {
+  margin-bottom: 10px;
+}
+
+.sub-card img {
+  width: 100%; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Crop and fit the image within the container */
+}
+
+.sub-card .select-number {
+  background-color: #f2f2f2;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.sub-card button[type="submit"] {
+  background-color: #e9ecef;
+  color: #4361ee;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sub-card button[type="submit"]:hover {
+  background-color: #f2f2f2;
+}
+
+.select-number select {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.select-number select option {
+  padding: 5px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #f2f2f2;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4361ee;
+}

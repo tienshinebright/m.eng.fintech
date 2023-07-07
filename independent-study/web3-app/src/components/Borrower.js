@@ -10,13 +10,11 @@ const Borrower = () => {
   const [education, setEducation] = useState('');
   const [sourceOfIncome, setSourceOfIncome] = useState('');
   const [businessInfo, setBusinessInfo] = useState('');
-  const [accountAddress, setAccountAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [communityName, setCommunityName] = useState('');
+  const [lendingPoolCommunityName, setLendingPoolCommunityName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission or data handling here
     console.log('Form submitted:', {
       fullName,
       salary,
@@ -25,16 +23,15 @@ const Borrower = () => {
       education,
       sourceOfIncome,
       businessInfo,
-      accountAddress,
       phoneNumber,
-      communityName,
+      lendingPoolCommunityName,
     });
   };
 
   return (
     <div className="container">
       <div className="form-container">
-        <h2>Your Personal Information</h2>
+        <h2>Borrower Personal Information</h2>
         <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label htmlFor="fullName">Full Name:</label>
@@ -116,19 +113,19 @@ const Borrower = () => {
         </div>
 
         <div className="form-row">
-          <label htmlFor="communityName">Lending Pool Community Name:</label>
+          <label htmlFor="lendingPoolCommunityName">Lending Pool Community Name:</label>
           <input
             type="text"
-            id="communityName"
-            value={communityName}
-            onChange={(e) => setCommunityName(e.target.value)}
+            id="lendingPoolCommunityName"
+            value={lendingPoolCommunityName}
+            onChange={(e) => setLendingPoolCommunityName(e.target.value)}
           />
         </div>
           <button type="submit">Submit</button>
         </form>
       </div>
       <div className="link-container">
-        <Link to="/borrower/loan">Go to Loan</Link>
+        <Link to="/borrower/loan">Loan Application</Link>
       </div>
     </div>
   );

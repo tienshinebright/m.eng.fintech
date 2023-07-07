@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../css/loan.css'
 
 const Loan = () => {
-  const [LoanAmount, setLoanAmount] = useState('');
+  const [loanAmount, setLoanAmount] = useState('');
+  const [loanTermMonths, setLoanTermMonths] = useState('');
+  const [interestRate, setInterestRate] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', {
-      LoanAmount
+      loanAmount,
+      loanTermMonths,
+      interestRate
     });
   }
 
@@ -18,12 +21,30 @@ const Loan = () => {
         <h2>Loan Application: Minimum Eligibility</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
-            <label htmlFor="LoanAmount">LoanAmount:</label>
+            <label htmlFor="loanAmount">Loan Amount:</label>
             <input
               type="text"
-              id="LoanAmount"
-              value={LoanAmount}
+              id="loanAmount"
+              value={loanAmount}
               onChange={(e) => setLoanAmount(e.target.value)}
+            />
+            </div>
+            <div className="form-row">
+            <label htmlFor="loanTermMonths ">Loan Term Months:</label>
+            <input
+              type="text"
+              id="loanTermMonths "
+              value={loanTermMonths }
+              onChange={(e) => setLoanTermMonths(e.target.value)}
+            />
+            </div>
+            <div className="form-row">
+            <label htmlFor="interestRate">Interest Rate:</label>
+            <input
+              type="text"
+              id="interestRate"
+              value={interestRate}
+              onChange={(e) => setInterestRate(e.target.value)}
             />
             </div>
             <button type="submit">Submit</button>
