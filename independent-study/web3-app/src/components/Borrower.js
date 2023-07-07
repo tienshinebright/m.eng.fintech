@@ -1,7 +1,6 @@
-// Borrower.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../borrower.css'
+import '../css/borrower.css';
 
 const Borrower = () => {
   const [fullName, setFullName] = useState('');
@@ -34,8 +33,8 @@ const Borrower = () => {
 
   return (
     <div className="container">
-      <h2>Your Information</h2>
       <div className="form-container">
+        <h2>Your Personal Information</h2>
         <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label htmlFor="fullName">Full Name:</label>
