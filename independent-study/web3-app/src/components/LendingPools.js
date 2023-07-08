@@ -21,7 +21,7 @@ const LendingPools = () => {
     if (selectedAmountA === 3500) {
       setProgressA(33); // 33% progress
     } else if (selectedAmountA === 7500) {
-      setProgressA(66); // 66% progress
+      setProgressA(50); // 66% progress
     } else if (selectedAmountA === 15000) {
       setProgressA(100); // 100% progress
     } else {
@@ -36,7 +36,7 @@ const LendingPools = () => {
     if (selectedAmountB === 4000) {
       setProgressB(33); // 33% progress
     } else if (selectedAmountB === 6000) {
-      setProgressB(66); // 66% progress
+      setProgressB(50); // 66% progress
     } else if (selectedAmountB === 12000) {
       setProgressB(100); // 100% progress
     } else {
@@ -51,7 +51,7 @@ const LendingPools = () => {
     if (selectedAmountC === 2500) {
       setProgressC(33); // 33% progress
     } else if (selectedAmountC === 3750) {
-      setProgressC(66); // 66% progress
+      setProgressC(50); // 66% progress
     } else if (selectedAmountC === 7500) {
       setProgressC(100); // 100% progress
     } else {
@@ -81,7 +81,13 @@ const LendingPools = () => {
               <div className="info-row">
                 <p>Loan Amount: <span>15,000 Thai baht</span></p>
               </div>
+              <div className="info-row">
+                <p>Loan Terms: <span>3</span></p>
+              </div>
             </div>
+            <div>
+                <p>Lender remaining: 0</p>
+              </div>
             <div className="progress-bar">
               <div className="progress" style={{ width: `${progressA}%` }}></div>
             </div>
@@ -114,7 +120,13 @@ const LendingPools = () => {
               <div className="info-row">
                 <p>Loan Amount: <span>12,000 Thai baht</span></p>
               </div>
+              <div className="info-row">
+                <p>Loan Terms: <span>3</span></p>
+              </div>
             </div>
+            <div>
+                <p>Lender remaining: 1 (6,000 Thai baht)</p>
+              </div>
             <div className="progress-bar">
               <div className="progress" style={{ width: `${progressB}%` }}></div>
             </div>
@@ -146,6 +158,14 @@ const LendingPools = () => {
               </div>
               <div className="info-row">
                 <p>Loan Amount: <span>7,500 Thai baht</span></p>
+              </div>
+              <div className="info-row">
+                <p>Loan Terms: <span>3</span></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Lender remaining: 2 (5,000 Thai baht)</p>
               </div>
             </div>
             <div className="progress-bar">

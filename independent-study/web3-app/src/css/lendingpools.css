@@ -31,7 +31,7 @@
 
 .sub-card img {
   width: 100%; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
+  height: 180px; /* Maintain aspect ratio */
   object-fit: cover; /* Crop and fit the image within the container */
 }
 
@@ -51,9 +51,21 @@
   cursor: pointer;
 }
 
+.sub-card button[type="submit"] {
+  background-color: #abc4ff;
+  color: #022b3a;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .sub-card button[type="submit"]:hover {
   background-color: #f2f2f2;
 }
+
 
 .select-number select {
   width: 50%;
