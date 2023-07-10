@@ -7,6 +7,8 @@ import LendingPools from './LendingPools';
 import Analytics from './Analytics';
 import CustomerSupport from './CustomerSupport';
 import Loan from './Loan';
+import Payment from './Payment';
+import ClaimFunds from './ClaimFunds';
 
 import logo from '../assets/p2p.png';
 
@@ -48,7 +50,9 @@ const Navbar = () => {
         <Route path="/" element={<Home />} />
         <Route path="/borrower" element={<Borrower />} />
         <Route path="/borrower/loan" element={<Loan />} />
+        <Route path="/borrower/Payment" element={<Payment />} />
         <Route path="/lender" element={<Lender />} />
+        <Route path="/lender/claims" element={<ClaimFunds />} />
         <Route path="/lending-pools" element={<LendingPools />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/customer-support" element={<CustomerSupport />} />

@@ -127,6 +127,9 @@ const Borrower = () => {
       <div className="link-container">
         <Link to="/borrower/loan">Loan Application</Link>
       </div>
+      <div className="link-container">
+        <Link to="/borrower/payment">Scheduled Repayments</Link>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Lender = () => {
   const [fullName, setFullName] = useState('');
@@ -92,6 +93,9 @@ const Lender = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      </div>
+      <div className="link-container">
+        <Link to="/lender/claims">Claim Funds</Link>
       </div>
     </div>
   );
